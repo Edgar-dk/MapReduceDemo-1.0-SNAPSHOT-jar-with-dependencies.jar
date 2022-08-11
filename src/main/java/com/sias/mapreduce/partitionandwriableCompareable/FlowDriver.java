@@ -1,4 +1,4 @@
-package com.sias.mapreduce.writableComparable;
+package com.sias.mapreduce.partitionandwriableCompareable;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
@@ -32,9 +32,14 @@ public class FlowDriver {
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(FlowBean.class);
 
+        /* 5.分区的方式，先分区，在把分区里面的数据
+        *    从新排序*/
+        job.setPartitionerClass(ProvincePartitioner.class);
+        job.setNumReduceTasks(5);
+
         // 6 设置数据的输入路径和输出路径
         FileInputFormat.setInputPaths(job, new Path("D:\\User1\\rundata\\document\\major\\UnderASophomore\\Test\\out1"));
-        FileOutputFormat.setOutputPath(job, new Path("D:\\User1\\rundata\\document\\major\\UnderASophomore\\Test\\out2"));
+        FileOutputFormat.setOutputPath(job, new Path("D:\\User1\\rundata\\document\\major\\UnderASophomore\\Test\\out4"));
 
         // 7 提交job
         boolean result = job.waitForCompletion(true);

@@ -1,4 +1,4 @@
-package com.sias.mapreduce.writableComparable;
+package com.sias.mapreduce.writableComparable1;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
@@ -34,7 +34,7 @@ public class FlowDriver {
 
         // 6 设置数据的输入路径和输出路径
         FileInputFormat.setInputPaths(job, new Path("D:\\User1\\rundata\\document\\major\\UnderASophomore\\Test\\out1"));
-        FileOutputFormat.setOutputPath(job, new Path("D:\\User1\\rundata\\document\\major\\UnderASophomore\\Test\\out2"));
+        FileOutputFormat.setOutputPath(job, new Path("D:\\User1\\rundata\\document\\major\\UnderASophomore\\Test\\out3"));
 
         // 7 提交job
         boolean result = job.waitForCompletion(true);

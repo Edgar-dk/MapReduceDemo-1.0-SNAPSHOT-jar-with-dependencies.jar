@@ -1,4 +1,4 @@
-package com.sias.mapreduce.WordCount1;
+package com.sias.mapreduce.combiner;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
@@ -31,6 +31,11 @@ public class WordCountDriver {
         /*05.设置最终输出kv类型*/
         instance.setOutputKeyClass(Text.class);
         instance.setOutputValueClass(IntWritable.class);
+        /*05.把设置的Combiner写在Driver中，
+        *    执行的时候，可以启动里面的文件,
+        *    就可以联系到Map和Reduce，让他们知道*/
+        instance.setCombinerClass(WordCountCombiner.class);
+
         /*06.设置输入和输出路径
         *    输入的路径里面的文件，表示计算这个文件
         *    输出的文件，表示计算完成存放文件的位置*/
